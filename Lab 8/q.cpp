@@ -35,27 +35,14 @@ int main()
             }
         }
     }
-
-    for(k=0; k<n; k++)
-        for(i=0; i<n; i++)
-            for(j=0; j<n; j++)
-            {
-                if(matrix[i][k]==0 || matrix[k][j]==0)
-                    matrix[i][j]=0;
-                else 
-                    if(matrix[i][k]!=0 || matrix[k][j]==0)
-                        matrix[i][j]=0;
-            }
-
-
-
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) 
-        {
-            cout<<matrix[i][j];
-        }
-        printf("\n");
+  
+  for (int i = 0; i < N; i++) {
+    for (int j = 0; j < N; j++) 
+    {
+        cout<<matrix[i][j];
     }
+    printf("\n");
+  }
 
     return 0;
 }
