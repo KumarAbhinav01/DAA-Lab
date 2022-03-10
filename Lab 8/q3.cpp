@@ -21,20 +21,19 @@ void floydAlg(int graph[][N])
     for (i = 0; i < N; i++) {
       for (j = 0; j < N; j++) {
         if (matrix[i][k] + matrix[k][j] < matrix[i][j])
-          matrix[i][j] = matrix[i][k] + matrix[k][j];
+            matrix[i][j] = matrix[i][k] + matrix[k][j];
       }
     }
   }
   printMatrix(matrix);
 }
 
-void printMatrix(int matrix[][]) {
+void printMatrix(int matrix[][]) 
+{
   for (int i = 0; i < N; i++) {
-    for (int j = 0; j < N; j++) {
-      if (matrix[i][j] == INF)
-        printf("%4s", "INF");
-      else
-        printf("%4d", matrix[i][j]);
+    for (int j = 0; j < N; j++) 
+    {
+        cout<<matrix[i][j];
     }
     printf("\n");
   }
