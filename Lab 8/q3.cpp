@@ -2,65 +2,66 @@
 (No. of vertices = 'n') 
 */
 
+#include<stdio.h>
 #include<iostream>
 using namespace std;
 
 int N=0;
 
-void printMatrix(int matrix[][N]);
-
-void floydAlg(int graph[][N]) 
+void add(int arr[][N],int src, int dest,int value)
 {
-  int matrix[N][N], i, j, k;
-
-  for (i = 0; i < N; i++)
-    for (j = 0; j < N; j++)
-      matrix[i][j] = graph[i][j];
-
-  for (k = 0; k < N; k++) {
-    for (i = 0; i < N; i++) {
-      for (j = 0; j < N; j++) {
-        if (matrix[i][k] + matrix[k][j] < matrix[i][j])
-            matrix[i][j] = matrix[i][k] + matrix[k][j];
-      }
-    }
-  }
-  printMatrix(matrix);
+     arr[src][dest] = value;
 }
 
-void printMatrix(int matrix[][]) 
+int main()
 {
-  for (int i = 0; i < N; i++) {
-    for (int j = 0; j < N; j++) 
-    {
-        cout<<matrix[i][j];
-    }
-    printf("\n");
-  }
-}
-
-int main() 
-{
-    int n,i,j;
+    int n,i,k,j;
     cout<<"Enter no. of vertices: ";
     cin>>n;
     N=n;
-    int A[n][n];
-    cout<<"Enter the elements: ";
+    int a[N][N];
+    for(i = 0; i < N; i++)
+        for(j = 0; j < N; j++)
+            a[i][j] = 0;
+
+    cout<<"Enter the elements: \n";
     for(i=0; i<n; i++)
         for(j=0; j<n; j++)
         {
-            if(i==j)
-            {
-                A[i][j]=0;
-                cout<<"Element A["<<i<<"]["<<j<<"] = 0";
-            }
-            else
-            {
-                cout<<"Element A["<<i<<"]["<<j<<"]";
-                cin>>A[i][j];
-            }
+            cout<<"Element A["<<i<<"]["<<j<<"]: ";
+            cin>>a[i][j];
         }
-    
-    floydAlg(A);
+ 
+    //floydWarshall(a);
+    int matrix[N][N];
+
+  for (i = 0; i < N; i++)
+    for (j = 0; j < N; j++)
+      matrix[i][j] = a[i][j];
+
+  int fr=0,fc=0;
+  while(fr<N){
+  for(int i=0;i<N;i++){
+      for(int j=0;j<N;j++){
+          if(i!=fr&&j!=fc){
+          if((matrix[fr][j]*matrix[i][fc]>0)&&(i!=j)){
+              if(matrix[i][j]==0){
+                  matrix[i][j]=matrix[fr][j]+matrix[i][fc];
+              }
+              else{
+                  matrix[i][j]=min( matrix[i][j],matrix[fr][j]+matrix[i][fc]);
+              }
+          }
+          }
+      }
+  }fr++;fc++;
+  
+    for(i = 0; i < N; i++)
+         for(j = 0; j < N; j++)
+             cout<<a[i][j];
+         cout<<"\n";
+    cout<<endl;
+
+    return 0;
+}
 }
