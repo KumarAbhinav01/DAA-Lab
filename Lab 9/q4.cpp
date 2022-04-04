@@ -2,6 +2,7 @@
 
 #include<bits/stdc++.h>
 using namespace std;
+#define N 4
 
 void printSolution(int board[N][N])
 {
@@ -68,7 +69,6 @@ bool solveNQ()
  
 int main()
 {
-    cout<<"\n----n Queens Problem-----";
     solveNQ();
     return 0;
 }
